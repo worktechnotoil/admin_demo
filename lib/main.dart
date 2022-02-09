@@ -3,11 +3,6 @@ import 'package:master_resonsive_demo/contacts.dart';
 import 'package:master_resonsive_demo/dashboard.dart';
 import 'package:master_resonsive_demo/events.dart';
 import 'package:master_resonsive_demo/my_drawer_header.dart';
-import 'package:master_resonsive_demo/notes.dart';
-import 'package:master_resonsive_demo/notifications.dart';
-import 'package:master_resonsive_demo/privacy_policy.dart';
-import 'package:master_resonsive_demo/send_feedback.dart';
-import 'package:master_resonsive_demo/settings.dart';
 
 
 void main() {
@@ -21,10 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      
       theme: ThemeData(
     
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home:  HomePage(),
     );
@@ -33,6 +28,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -42,36 +39,38 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_typing_uninitialized_variables
     var container;
     if (currentPage == DrawerSections.dashboard) {
       container = DashboardPage();
-    } else if (currentPage == DrawerSections.contacts) {
+    } else if (currentPage == DrawerSections.service) {
       container = ContactsPage();
-    } else if (currentPage == DrawerSections.events) {
+    } else if (currentPage == DrawerSections.Logout) {
       container = EventsPage();
-    } else if (currentPage == DrawerSections.notes) {
-      container = NotesPage();
-    } else if (currentPage == DrawerSections.settings) {
-      container = SettingsPage();
-    } else if (currentPage == DrawerSections.notifications) {
-      container = NotificationsPage();
-    } else if (currentPage == DrawerSections.privacy_policy) {
-      container = PrivacyPolicyPage();
-    } else if (currentPage == DrawerSections.send_feedback) {
-      container = SendFeedbackPage();
-    }
+    // } else if (currentPage == DrawerSections.notes) {
+    //   container = NotesPage();
+    // } else if (currentPage == DrawerSections.settings) {
+    //   container = SettingsPage();
+    // } else if (currentPage == DrawerSections.notifications) {
+    //   container = NotificationsPage();
+    // } else if (currentPage == DrawerSections.privacy_policy) {
+    //   container = PrivacyPolicyPage();
+    // } else if (currentPage == DrawerSections.send_feedback) {
+    //   container = SendFeedbackPage();
+     }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[700],
-        title: Text("Rapid Tech"),
+        title: const Text("Service App"),
       ),
       body: container,
       drawer: Drawer(
         child: SingleChildScrollView(
+          // ignore: avoid_unnecessary_containers
           child: Container(
             child: Column(
               children: [
-                MyHeaderDrawer(),
+                const MyHeaderDrawer(),
                 MyDrawerList(),
               ],
             ),
@@ -81,9 +80,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget MyDrawerList() {
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: 15,
       ),
       child: Column(
@@ -91,22 +91,22 @@ class _HomePageState extends State<HomePage> {
         children: [
           menuItem(1, "Dashboard", Icons.dashboard_outlined,
               currentPage == DrawerSections.dashboard ? true : false),
-          menuItem(2, "Contacts", Icons.people_alt_outlined,
-              currentPage == DrawerSections.contacts ? true : false),
-          menuItem(3, "Events", Icons.event,
-              currentPage == DrawerSections.events ? true : false),
-          menuItem(4, "Notes", Icons.notes,
-              currentPage == DrawerSections.notes ? true : false),
-          Divider(),
-          menuItem(5, "Settings", Icons.settings_outlined,
-              currentPage == DrawerSections.settings ? true : false),
-          menuItem(6, "Notifications", Icons.notifications_outlined,
-              currentPage == DrawerSections.notifications ? true : false),
-          Divider(),
-          menuItem(7, "Privacy policy", Icons.privacy_tip_outlined,
-              currentPage == DrawerSections.privacy_policy ? true : false),
-          menuItem(8, "Send feedback", Icons.feedback_outlined,
-              currentPage == DrawerSections.send_feedback ? true : false),
+          menuItem(2, "service", Icons.medical_services,
+              currentPage == DrawerSections.service ? true : false),
+          menuItem(3, "Logout", Icons.logout_outlined,
+              currentPage == DrawerSections.Logout ? true : false),
+          // menuItem(4, "Notes", Icons.notes,
+          //     currentPage == DrawerSections.notes ? true : false),
+          // const Divider(),
+          // menuItem(5, "Settings", Icons.settings_outlined,
+          //     currentPage == DrawerSections.settings ? true : false),
+          // menuItem(6, "Notifications", Icons.notifications_outlined,
+          //     currentPage == DrawerSections.notifications ? true : false),
+          // Divider(),
+          // menuItem(7, "Privacy policy", Icons.privacy_tip_outlined,
+          //     currentPage == DrawerSections.privacy_policy ? true : false),
+          // menuItem(8, "Send feedback", Icons.feedback_outlined,
+          //     currentPage == DrawerSections.send_feedback ? true : false),
         ],
       ),
     );
@@ -122,24 +122,25 @@ class _HomePageState extends State<HomePage> {
             if (id == 1) {
               currentPage = DrawerSections.dashboard;
             } else if (id == 2) {
-              currentPage = DrawerSections.contacts;
+              currentPage = DrawerSections.service;
             } else if (id == 3) {
-              currentPage = DrawerSections.events;
-            } else if (id == 4) {
-              currentPage = DrawerSections.notes;
-            } else if (id == 5) {
-              currentPage = DrawerSections.settings;
-            } else if (id == 6) {
-              currentPage = DrawerSections.notifications;
-            } else if (id == 7) {
-              currentPage = DrawerSections.privacy_policy;
-            } else if (id == 8) {
-              currentPage = DrawerSections.send_feedback;
+              currentPage = DrawerSections.Logout;
             }
+            // else if (id == 4) {
+            //   currentPage = DrawerSections.notes;
+            // } else if (id == 5) {
+            //   currentPage = DrawerSections.settings;
+            // } else if (id == 6) {
+            //   currentPage = DrawerSections.notifications;
+            // } else if (id == 7) {
+            //   currentPage = DrawerSections.privacy_policy;
+            // } else if (id == 8) {
+            //   currentPage = DrawerSections.send_feedback;
+            //}
           });
         },
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15.0),
           child: Row(
             children: [
               Expanded(
@@ -153,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                 flex: 3,
                 child: Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                   ),
@@ -169,13 +170,13 @@ class _HomePageState extends State<HomePage> {
 
 enum DrawerSections {
   dashboard,
-  contacts,
-  events,
-  notes,
-  settings,
-  notifications,
-  privacy_policy,
-  send_feedback,
+  service,
+  Logout,
+  // notes,
+  // settings,
+  // notifications,
+  // privacy_policy,
+  // send_feedback,
 }
 
 
