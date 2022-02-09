@@ -8,9 +8,10 @@ class EventsPage extends StatefulWidget {
 class _EventsPageState extends State<EventsPage> {
   @override
   Widget build(BuildContext context) {
+    
     return Container(
-      child: Center(
-        child: Text("Events Page"),
+      child: const Center(
+        child: Text("Logout Page"),
       ),
     );
   }

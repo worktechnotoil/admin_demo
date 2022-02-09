@@ -30,7 +30,7 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
             ),
           ),
           const Text(
-            "Rapid Tech",
+            " Service app",
             style:  TextStyle(color: Colors.white, fontSize: 20),
           ),
           Text(
