@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:master_resonsive_demo/pages/contact_page.dart';
+import 'package:master_resonsive_demo/pages/home_page.dart';
+import 'package:master_resonsive_demo/pages/profile_page.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({ Key? key }) : super(key: key);
@@ -45,8 +48,8 @@ class SideMenu extends StatelessWidget {
             onTap: ()
             {
               Navigator.of(context).pop();
-              // Navigator.of(context).push(MaterialPageRoute(
-              //     builder: (BuildContext context) => MyHomePage()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => Home_Page()));
             },
           ),
           const Divider(
@@ -62,8 +65,8 @@ class SideMenu extends StatelessWidget {
             onTap: ()
             {
               Navigator.of(context).pop();
-            //   Navigator.of(context).push(MaterialPageRoute(
-            //       builder: (BuildContext context) => profile()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => Profile_page()));
              },
           ),
           const Divider(
@@ -79,8 +82,8 @@ class SideMenu extends StatelessWidget {
             onTap: ()
              {
               Navigator.of(context).pop();
-              // Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (BuildContext context) => null()));
+              Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => contactPage()));
               },
           )
         ],

@@ -17,7 +17,7 @@ class _MyhomeState extends State<Myhome> {
           title: const Text("Flutte dashboard"),
         ),
         body: const Center(
-            child: Center(child: Text("This is Home page"))
+            child: Center(child: Text("This is home Screen"))
         ),
         
       
