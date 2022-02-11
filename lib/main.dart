@@ -1,30 +1,31 @@
+import 'package:ServiceApp/contacts.dart';
+import 'package:ServiceApp/dashboard.dart';
+import 'package:ServiceApp/my_drawer_header.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:master_resonsive_demo/contacts.dart';
-import 'package:master_resonsive_demo/dashboard.dart';
-import 'package:master_resonsive_demo/events.dart';
-import 'package:master_resonsive_demo/my_drawer_header.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-
-void main() {
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "ServiceAdd",
       theme: ThemeData(
-    
         primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:  HomePage(),
+      home: const HomePage(),
     );
   }
-
 }
 
 class HomePage extends StatefulWidget {
@@ -44,20 +45,20 @@ class _HomePageState extends State<HomePage> {
     if (currentPage == DrawerSections.dashboard) {
       container = DashboardPage();
     } else if (currentPage == DrawerSections.service) {
-      container = ContactsPage();
+      container =  ContactsPage();
     } else if (currentPage == DrawerSections.Logout) {
-      container = EventsPage();
-    // } else if (currentPage == DrawerSections.notes) {
-    //   container = NotesPage();
-    // } else if (currentPage == DrawerSections.settings) {
-    //   container = SettingsPage();
-    // } else if (currentPage == DrawerSections.notifications) {
-    //   container = NotificationsPage();
-    // } else if (currentPage == DrawerSections.privacy_policy) {
-    //   container = PrivacyPolicyPage();
-    // } else if (currentPage == DrawerSections.send_feedback) {
-    //   container = SendFeedbackPage();
-     }
+      Future.delayed(Duration.zero, () => _showDialog(context));
+      // } else if (currentPage == DrawerSections.notes) {
+      //   container = NotesPage();
+      // } else if (currentPage == DrawerSections.settings) {
+      //   container = SettingsPage();
+      // } else if (currentPage == DrawerSections.notifications) {
+      //   container = NotificationsPage();
+      // } else if (currentPage == DrawerSections.privacy_policy) {
+      //   container = PrivacyPolicyPage();
+      // } else if (currentPage == DrawerSections.send_feedback) {
+      //   container = SendFeedbackPage();
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[700],
@@ -166,6 +167,40 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Expanded(
+          child: AlertDialog(
+            // title: const Text('Welcome'),
+            content: const Text('Do you want to logout?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'YES',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'NO',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
 
 enum DrawerSections {
@@ -178,5 +213,7 @@ enum DrawerSections {
   // privacy_policy,
   // send_feedback,
 }
+ // ignore: unused_element
+ 
 
 
