@@ -1,7 +1,9 @@
 import 'package:ServiceApp/contacts.dart';
 import 'package:ServiceApp/dashboard.dart';
 import 'package:ServiceApp/my_drawer_header.dart';
+import 'package:ServiceApp/pages/login.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomePage(),
+      home:  Login_screen(),
     );
   }
 }
@@ -34,6 +36,15 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+get user => _auth.currentUser;
+
+Future<void> _signOut(BuildContext context) async {
+    await _auth.signOut();
+    Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) =>  Login_screen()));
+  }
 
 class _HomePageState extends State<HomePage> {
   var currentPage = DrawerSections.dashboard;
@@ -179,7 +190,7 @@ class _HomePageState extends State<HomePage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  _signOut(context);
                 },
                 child: const Text(
                   'YES',
